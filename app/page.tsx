@@ -1,8 +1,13 @@
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      nation on ao
+    <div className="mx-auto max-w-2xl space-y-8 p-6">
+      <div className="text-center">
+        <div className="flex items-center justify-center space-x-2">
+          <div className="h-8 w-8 bg-primary" />
+          <h1 className="text-2xl font-bold tracking-tighter">nation</h1>
+        </div>
+      </div>
     </div>
   );
 }
