@@ -1,10 +1,9 @@
 'use client'
 
 import Link from "next/link"
-import { AlertTriangle, Apple, Facebook, Mail } from "lucide-react"
+import {  Apple } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function Component() {
   return (
