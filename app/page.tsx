@@ -1,13 +1,61 @@
+'use client'
+
+import { useState } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Wallet } from 'lucide-react'
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
-    <div className="mx-auto max-w-2xl space-y-8 p-6">
-      <div className="text-center">
-        <div className="flex items-center justify-center space-x-2">
-          <div className="h-8 w-8 bg-primary" />
-          <h1 className="text-2xl font-bold tracking-tighter">nation</h1>
-        </div>
+    <div className="min-h-screen bg-[#3b5998] font-mono">
+      {/* Header text styled like the movie poster */}
+      <div className="p-8">
+        <h1 className="text-white text-2xl">
+          the nation://
+        </h1>
+        <button 
+          onClick={() => setIsModalOpen(true)}
+          className="text-white text-xl hover:underline cursor-pointer mt-2"
+        >
+          connect to nation
+        </button>
       </div>
+
+      {/* Main image */}
+      <div className="flex justify-center items-center p-8">
+        <img 
+          src="/cur5.png?height=600&width=600" 
+          alt="Vintage Social Media"
+          className="max-w-2xl w-full grayscale opacity-80"
+        />
+      </div>
+
+      {/* Connect Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="font-mono border-2 border-black bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-normal">
+              Connect to Nation
+            </DialogTitle>
+          </DialogHeader>
+          <div className="p-4">
+            <div className="space-y-4">
+              <p className="text-sm">
+                Connect your wallet to join the decentralized social network
+              </p>
+              <Button 
+                onClick={() => console.log('Connecting wallet...')}
+                className="w-full bg-[#3b5998] hover:bg-[#2d4373] text-white font-normal"
+              >
+                <Wallet className="mr-2 h-4 w-4" />
+                Connect Wallet
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
-  );
+  )
 }
