@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Wallet } from 'lucide-react'
+import { ConnectButton } from "arweave-wallet-kit"
+
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -15,12 +17,12 @@ export default function Home() {
         <h1 className="text-white text-2xl">
           the nation://
         </h1>
-        <button 
+        <ConnectButton
           onClick={() => setIsModalOpen(true)}
           className="text-white text-xl hover:underline cursor-pointer mt-2"
         >
           connect to nation
-        </button>
+        </ConnectButton>
       </div>
 
       {/* Main image */}
