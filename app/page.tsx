@@ -1,63 +1,71 @@
 'use client'
 
 import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Wallet } from 'lucide-react'
 import { ConnectButton } from "arweave-wallet-kit"
 
-
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isWalletConnected, setIsWalletConnected] = useState(false)
+
+  const handleConnect = () => {
+    // Simulating wallet connection
+    setIsWalletConnected(true)
+  }
 
   return (
-    <div className="min-h-screen bg-[#3b5998] font-mono">
-      {/* Header text styled like the movie poster */}
-      <div className="p-8">
-        <h1 className="text-white text-2xl">
-          the nation://
-        </h1>
-        <ConnectButton
-          onClick={() => setIsModalOpen(true)}
-          className="text-white text-xl hover:underline cursor-pointer mt-2"
-        >
-          connect to nation
-        </ConnectButton>
-      </div>
+    <div className="min-h-screen font-mono">
+      {/* Header */}
+      <header className="flex justify-between items-center p-4">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <div className="h-8 w-8 bg-primary" />
+          <Link href="/">
+            <h1 className="text-2xl font-bold tracking-tighter text-black">Nation</h1>
+          </Link>
+        </div>
 
-      {/* Main image */}
-      <div className="flex justify-center items-center p-8">
-        <img 
-          src="/cur5.png?height=600&width=600" 
+        {/* Center options (visible when wallet is connected) */}
+        {isWalletConnected && (
+          <div className="space-x-4">
+            <Button variant="ghost" className="text-white hover:text-primary">View</Button>
+            <Button variant="ghost" className="text-white hover:text-primary">Create</Button>
+          </div>
+        )}
+
+        {/* Connect Button (right side) */}
+        <ConnectButton
+          onClick={handleConnect}
+          className="text-white hover:text-primary"
+        >
+          {isWalletConnected ? 'Connected' : 'Connect to Nation'}
+        </ConnectButton>
+      </header>
+
+      {/* Main content */}
+      <main className="flex flex-col items-center justify-center p-8">
+        {/* Header text styled like the movie poster */}
+        {/* <h2 className="text-white text-3xl mb-8">
+          the nation://
+        </h2> */}
+
+        {/* Main image */}
+        {/* <img 
+          src="/placeholder.svg?height=600&width=600" 
           alt="Vintage Social Media"
           className="max-w-2xl w-full grayscale opacity-80"
-        />
-      </div>
+        /> */}
 
-      {/* Connect Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="font-mono border-2 border-black bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-normal">
-              Connect to Nation
-            </DialogTitle>
-          </DialogHeader>
-          <div className="p-4">
-            <div className="space-y-4">
-              <p className="text-sm">
-                Connect your wallet to join the decentralized social network
-              </p>
-              <Button 
-                onClick={() => console.log('Connecting wallet...')}
-                className="w-full bg-[#3b5998] hover:bg-[#2d4373] text-white font-normal"
-              >
-                <Wallet className="mr-2 h-4 w-4" />
-                Connect Wallet
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+        {/* Connect Button (center, only shown if not connected) */}
+        {/* {!isWalletConnected && (
+          <ConnectButton
+            onClick={handleConnect}
+            className="mt-8 text-white text-xl hover:underline cursor-pointer"
+          >
+            connect to nation
+          </ConnectButton>
+        )} */}
+      </main>
     </div>
   )
 }
